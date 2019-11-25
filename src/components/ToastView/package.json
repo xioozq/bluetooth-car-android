@@ -1,0 +1,6 @@
+{
+  "name": "toast-view",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ToastView.js"
+}

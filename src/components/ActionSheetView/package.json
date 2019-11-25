@@ -1,0 +1,6 @@
+{
+  "name": "action-sheet-view",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ActionSheetView.js"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "refresh-view",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./RefreshView.js"
+}
