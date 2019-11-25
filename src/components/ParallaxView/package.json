@@ -1,0 +1,6 @@
+{
+  "name": "parallax-view",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ParallaxView.js"
+}

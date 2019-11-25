@@ -1,0 +1,6 @@
+{
+  "name": "linking",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Linking.js"
+}

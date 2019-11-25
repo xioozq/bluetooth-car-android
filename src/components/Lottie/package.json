@@ -1,0 +1,6 @@
+{
+  "name": "lottie",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Lottie.js"
+}
