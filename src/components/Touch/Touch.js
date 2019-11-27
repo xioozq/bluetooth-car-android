@@ -13,6 +13,8 @@ export default class extends React.Component {
     activeColor: configStyle.color.background,
     pressInterval: 250, // 点击间隔， 防连击
     onPress: null,
+    onPressIn: null,
+    onPressOut: null,
     style: {},
     onLayout: null,
   }
@@ -73,16 +75,26 @@ export default class extends React.Component {
     }
   }
 
-  onPressIn = () => {
-    const { type } = this.props
+  onPressIn = (...params) => {
+    const { type, onPressIn } = this.props
+
     type === 'highlight' && this.setState({
       active: true,
     })
+
+    if (typeof onPressIn === 'function') {
+      onPressIn(...params)
+    }
   }
 
-  onPressOut = () => {
-    const { type } = this.props
+  onPressOut = (...params) => {
+    const { type, onPressOut } = this.props
+
     type === 'highlight' && this.throttledClearHighlight()
+
+    if (typeof onPressOut === 'function') {
+      onPressOut(...params)
+    }
   }
 
   clearHighlight = () => {

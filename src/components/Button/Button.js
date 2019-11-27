@@ -10,11 +10,11 @@ import Touch from '../Touch'
 import Style from '../Style'
 
 const sizes = {
-  lg: 70,
-  md: 60,
-  sm: 50,
-  xs: 40,
-  xxs: 30,
+  lg: 60,
+  md: 50,
+  sm: 40,
+  xs: 30,
+  xxs: 20,
 }
 
 const fontSizes = {
@@ -47,6 +47,8 @@ export default class Button extends React.PureComponent {
     icon: null,
     iconStyle: null,
     onPress: null,
+    onPressIn: null,
+    onPressOut: null,
   }
 
   render() {
@@ -68,6 +70,8 @@ export default class Button extends React.PureComponent {
       activeColor,
       pressInterval,
       onPress,
+      onPressIn,
+      onPressOut,
       iconStyle,
       icon,
     } = this.props
@@ -123,7 +127,9 @@ export default class Button extends React.PureComponent {
         activeColor={activeColor}
         pressInterval={pressInterval}
         style={styleMerge(styles.wrapper, _wrapperStyle, style, disabled || loading ? styles.disabledWrapper : null)}
-        onPress={this.onPress}
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
       >
         <View style={styleMerge(styles.inner, _innerStyle, innerStyle)} >
           {
@@ -142,11 +148,6 @@ export default class Button extends React.PureComponent {
         </View>
       </Wrapper>
     )
-  }
-
-  onPress = (e) => {
-    const { onPress } = this.props
-    typeof onPress === 'function' && onPress(e)
   }
 
   measure = (callback) => {

@@ -1,9 +1,9 @@
 import React from 'react'
-import storage from '~/storage'
 import { Page } from '~/components'
-import { AsyncStorage } from '~/utils'
+import { AsyncStorage, connect } from '~/utils'
 import SelectPage from '~/containers/SelectPage'
 
+@connect(({ app }) => ({ app }))
 export default class SelectDevice extends Page {
 
   constructor() {
@@ -26,13 +26,15 @@ export default class SelectDevice extends Page {
   }
 
   render() {
-    const { list } = this.state
+    const { deviceList } = this.props.app
 
     return (
       <SelectPage
         key="selector"
-        list={list}
-        selectedValue={storage.serverEnv}
+        list={deviceList}
+        labelKey="name"
+        valueKey="id"
+        // selectedValue={storage.serverEnv}
         title="选择蓝牙设备"
         onSubmit={this.handleSubmitSelect}
         onCancel={this.handleCancelSelect}
@@ -40,38 +42,15 @@ export default class SelectDevice extends Page {
     )
   }
 
-  handleSubmitSelect = (data) => {
-    this.handleSetServerEnv(data.value)
-  }
-
-  handleSetServerEnv = (env, value) => {
-    storage.serverEnv = env
-    AsyncStorage.setItem('SERVER_ENV', env)
-    this.showToast('设置成功')
-    this.navBack()
+  handleSubmitSelect = async (data) => {
+    const result = await this.dispatch({ type: 'app/connectDevice', payload: { id: data.id } })
+    if (result) {
+      this.navBack()
+    }
   }
 
   handleCancelSelect = () => {
     this.navBack()
   }
 
-  handleCustomServerUrlInput = (value) => {
-    this.setState({
-      customServerUrl: value,
-    })
-  }
-
-  handleCancelCustomServerUrl = () => {
-    this.setState({
-      customServerModalVisible: false,
-    })
-  }
-
-  handleSubmitCustomServerUrl = () => {
-    const { customServerUrl } = this.state
-    this.setState({
-      customServerModalVisible: false,
-    })
-    this.handleSetServerEnv('CUSTOM', customServerUrl)
-  }
 }

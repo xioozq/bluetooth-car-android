@@ -77,6 +77,8 @@ class Root extends Component {
   async componentDidMount() {
     SplashScreen.hide()
     storage.showToast = this.showToast
+    storage.showLoading = this.showLoading
+    storage.closeLoading = this.closeLoading
     this.createLoading()
     AppState.addEventListener('change', this.handleAppStateChange)
     Linking.addEventListener('url', this.handleSchemeURL)

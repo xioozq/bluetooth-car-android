@@ -26,18 +26,18 @@ export default class ToastView extends React.Component {
 
 const styles = Style.create({
   container: {
-    maxWidth: clientWidth - 80,
-    minWidth: 300,
+    maxWidth: clientWidth - 100,
+    minWidth: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 40,
-    paddingVertical: 35,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, .65)',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0, 0, 0, .75)',
   },
   text: {
-    lineHeight: 28,
-    fontSize: 20,
+    lineHeight: 15,
+    fontSize: 12,
     color: '#fff',
   },
 })
